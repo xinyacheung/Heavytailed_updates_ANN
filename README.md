@@ -79,7 +79,7 @@ The `.npy` files store histograms:
 
 Filenames encode model, optimizer, learning rate, and training window.
 
-## 🧠 Project Purpose
+## 🧠 Code Purpose
 
 This codebase enables analysis of:
 
