@@ -85,7 +85,7 @@ This codebase enables analysis of:
 
 - Learning dynamics through parameter updates
 - Heavy-tailed update distributions
-- Response to input perturbation
+- Response to parameter perturbation
 - Information-theoretic validation
 
 ---
