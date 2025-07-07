@@ -1,66 +1,91 @@
 # This repository is for the under review manuscript "Heavy-tailed update arises from information-driven self-organization in non-equilibrium learning"
 
 
-# 📂 Folder Overview: `scripts/`
+This repository contains training scripts, weight update tracking, perturbation analysis, and information-theoretic validation tools for studying non-equilibrium learning behavior in neural networks.
 
-This document describes the role and contents of each folder within the `scripts/` directory. Use it as a reference to understand where each analysis module, dataset, and model training script resides.
+## 📁 Directory Structure
 
----
+- `train/`: Scripts to train various models (MLP, CNN, Transformer) on MNIST, CIFAR and 26-character prediction datasets.
+- `updates/`: Scripts and `.npy` data files tracking weight updates across training steps.
+- `interval/`: Interval-based data files capturing weight update characteristics.
+- `perturbation/`: Perturbation response analysis via loss surface variance.
+- `validation/`: Mutual information and gradient validation analysis.
 
-## 📁 interval/
+## 🚀 Quick Start
 
-**Purpose**:  
-Analyzes how internal neural representations evolve over time during training. It computes and visualizes *interval distances* across different layers or steps.
+### 1. Environment Setup
 
-**Contents**:
-- `.npy` files storing binned distance metrics (e.g., `xbins`, `nums`)
-- `plot_interval.ipynb`: Notebook to visualize training trajectory shifts
+Create and activate your Python environment:
 
----
+    conda create -n netdynamics python=3.8
+    conda activate netdynamics
 
-## 📁 updates/
+Install required packages:
 
-**Purpose**:  
-Quantifies changes in model weights (update magnitudes) between training steps. This can reveal trends in learning rate effects and training dynamics.
+    pip install numpy matplotlib pandas scipy scikit-learn torch torchvision wandb
 
-**Contents**:
-- `.npy` files capturing update magnitudes
-- `plot_update.ipynb`: Generates comparative plots
+### 2. Train Models
 
----
+Run the following scripts to train models:
 
-## 📁 perturbation/
+- Train MLP on MNIST:
 
-**Purpose**:  
-Measures model robustness by adding perturbations to the weights and tracking how loss variance responds.
+      python train/MNIST-MLP.py
 
-**Contents**:
-- `.npy` files recording perturbed loss behavior
-- `plot_perturbation.ipynb`: Analysis of perturbation robustness
+- Train CNN on CIFAR-10:
 
----
+      python train/CiFar-CNN.py
 
-## 📁 train/
+- Train Transformer on character dataset:
 
-**Purpose**:  
-Includes training scripts for various models and datasets.
+      python train/charac-transformer.py
 
-**Contents**:
-- `MNIST-MLP.py`: Trains MLP on MNIST
-- `CiFar-CNN.py`: Trains CNN on CIFAR-10
-- `charac-transformer.py`: Trains a character-level Transformer
-- `update_tracker_*.py`: Monitors updates during training
+### 3. Track Weight Updates
 
----
+Use the following scripts to record weight updates:
 
-## 📁 validation/
+- For CNN:
 
-**Purpose**:  
-Performs validation analysis including mutual information (MI), gradient comparison, and metric submission.
+      python train/update_tracker_cnn.py
 
-**Contents**:
-- `mi_gradient.py`: Computes MI and PCA-based gradient direction.
-- `plot_MIbeta.ipynb`: Visualizes MI and PCA-based gradient direction treads.
-- `.npy` and `.csv`: Precomputed MI or prediction result arrays
+- For 2-layer MLP:
+
+      python train/update_tracker_2linear.py
+
+### 4. Analyze Weight Update Distribution
+
+Open and run the Jupyter notebook:
+
+    jupyter notebook updates/plot_update.ipynb
+
+### 5. Perturbation Analysis
+
+Visualize loss response to perturbation in:
+
+    jupyter notebook perturbation/plot_perturbation.ipynb
+
+### 6. Information-Theoretic Validation
+
+Compute MI and gradients with:
+
+    python validation/mi_gradient.py
+
+## 📊 Data Files
+
+The `.npy` files store histograms:
+
+- `*_nums.npy`: values (y-axis)
+- `*_xbins.npy`: bin edges (x-axis)
+
+Filenames encode model, optimizer, learning rate, and training window.
+
+## 🧠 Project Purpose
+
+This codebase enables analysis of:
+
+- Learning dynamics through weight updates
+- Heavy-tailed update distributions
+- Response to input perturbation
+- Information-theoretic properties of training
 
 ---
