@@ -83,7 +83,7 @@ Filenames encode model, optimizer, learning rate, and training window.
 
 This codebase enables analysis of:
 
-- Learning dynamics through weight updates
+- Learning dynamics through parameter updates
 - Heavy-tailed update distributions
 - Response to input perturbation
 - Information-theoretic properties of training
